@@ -26,7 +26,7 @@ function YouTubeVideoPage() {
 
     return (
         <div className='app'>
-            <SubtitlesPlayer ref={player} videoId={searchParams.get("videoId")} />
+            <SubtitlesPlayer ref={player} videoId={searchParams.get("videoId")} language={searchParams.get("language")} />
             <FullScreen ref={fullScreenRef} onFullScreenChange={onFullScreenChange}>
                 <div
                     onClick={requestOrExitFullScreen}

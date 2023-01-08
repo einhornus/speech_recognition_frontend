@@ -18,7 +18,8 @@ class App extends React.Component {
     render () {
         return (<BrowserRouter>
             <Routes>
-            <Route path="/youtube_video" element={<YouTubeVideoPage></YouTubeVideoPage>}/>
+                <Route path="/youtube_video" element={<YouTubeVideoPage></YouTubeVideoPage>}/>
+                <Route path="/" element={<YouTubeVideoPage></YouTubeVideoPage>}/>
             </Routes>
         </BrowserRouter>);
     }

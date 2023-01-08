@@ -58,11 +58,12 @@ class SubtitlesPlayer extends React.Component {
                 onStateChange={this.onStateChange.bind(this)}
                 onEnd={this.onEnd.bind(this)}
                 onPlaybackRateChange={this.onPlaybackRateChange.bind(this)}
+                onPlayerError={this.onPlayerError.bind(this)}
                 ref={this.youtube}
                 opts={opts}
             />
 
-            <Subtitles ref={this.subtitles} videoId={this.props.videoId}>
+            <Subtitles ref={this.subtitles} videoId={this.props.videoId} language={this.props.language}>
             </Subtitles>
         </div>
     }
@@ -76,6 +77,10 @@ class SubtitlesPlayer extends React.Component {
     onEnd(event) {
     }
 
+    onPlayerError(event) {
+        console.log("Hi I'm an error event!")
+    }
+
     onPlay(event) {
     }
 
@@ -83,7 +88,9 @@ class SubtitlesPlayer extends React.Component {
     }
 
     onReady(event) {
-        //event.target.pauseVideo();
+        console.log("me ready")
+        this.subtitles.current.startSubs();
+        event.target.pauseVideo();
     }
 
     onTimer() {
