@@ -5,6 +5,8 @@ import SubtitlesPlayer from "./components/subtitles_player/SubtitlesPlayer";
 import FullScreen, {fullScreenSupported} from 'react-request-fullscreen';
 import YouTubeVideoPage from "./pages/YouTubeVideoPage";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import MainPage from "./pages/MainPage";
+import SearchPage from "./pages/SearchPage";
 
 class App extends React.Component {
     constructor (props) {
@@ -19,7 +21,8 @@ class App extends React.Component {
         return (<BrowserRouter>
             <Routes>
                 <Route path="/youtube_video" element={<YouTubeVideoPage></YouTubeVideoPage>}/>
-                <Route path="/" element={<YouTubeVideoPage></YouTubeVideoPage>}/>
+                <Route path="/" element={<MainPage></MainPage>}/>
+                <Route path="/search" element={<SearchPage></SearchPage>}/>
             </Routes>
         </BrowserRouter>);
     }

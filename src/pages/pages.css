@@ -1,0 +1,66 @@
+.search-form {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.main-form {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+}
+
+input[type="text"] {
+    padding: 10px;
+    margin-top: 10px;
+    width: 50%;
+    top: 20px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+select {
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+label{
+    font-size: 16px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.my-select{
+    display: flex;
+    margin-right: 10px;
+    margin-left: 10px;
+    flex-direction: column;
+    width: 15%;
+    align-items: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    width: 20%;
+    background-color: #4CAF50;
+    color: white;
+    margin-right: 10px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3e8e41;
+}

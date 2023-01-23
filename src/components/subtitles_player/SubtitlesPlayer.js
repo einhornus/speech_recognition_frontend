@@ -12,6 +12,7 @@ class SubtitlesPlayer extends React.Component {
         this.subtitles = createRef();
         this.youtube = createRef();
 
+
         setInterval(() => {
             self.onTimer();
         }, 50);
@@ -33,7 +34,8 @@ class SubtitlesPlayer extends React.Component {
                     // https://developers.google.com/youtube/player_parameters
                     autoplay: 1,
                     fs: 0,
-                    iv_load_policy: 3
+                    iv_load_policy: 3,
+                    cc_load_policy: 0
                 },
             };
         } else {
@@ -44,7 +46,8 @@ class SubtitlesPlayer extends React.Component {
                     // https://developers.google.com/youtube/player_parameters
                     autoplay: 1,
                     fs: 0,
-                    iv_load_policy: 3
+                    iv_load_policy: 3,
+                    cc_load_policy: 0
                 },
             };
         }
@@ -58,7 +61,7 @@ class SubtitlesPlayer extends React.Component {
                 onStateChange={this.onStateChange.bind(this)}
                 onEnd={this.onEnd.bind(this)}
                 onPlaybackRateChange={this.onPlaybackRateChange.bind(this)}
-                onPlayerError={this.onPlayerError.bind(this)}
+                onError={this.onError.bind(this)}
                 ref={this.youtube}
                 opts={opts}
             />
@@ -77,7 +80,7 @@ class SubtitlesPlayer extends React.Component {
     onEnd(event) {
     }
 
-    onPlayerError(event) {
+    onError(event) {
         console.log("Hi I'm an error event!")
     }
 

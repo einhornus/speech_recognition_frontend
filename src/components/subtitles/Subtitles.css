@@ -1,8 +1,38 @@
+.subsUpper {
+    font-size: 20px;
+    font-weight: 1000;
+    color: #ffffff;
+    top: 50px;
+    z-index: -10000;
+    position: relative;
+    background-color: black;
+}
+
+.subsDiv {
+    font-size: 20px;
+    font-weight: 1000;
+    color: #ffffff;
+    top: 0;
+    height: inherit;
+    z-index: 1;
+    position: absolute;
+}
+
+.subsLower {
+    font-size: 20px;
+    font-weight: 1000;
+    color: #ffffff;
+    bottom: -450px;
+    z-index: 1;
+    position: relative;
+    background-color: black;
+}
+
 .subs {
     font-size: 20px;
     font-weight: 1000;
     color: #ffffff;
-    top: -100px;
+    bottom: 100px;
     z-index: 1;
     position: relative;
     background-color: black;
