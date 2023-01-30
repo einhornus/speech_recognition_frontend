@@ -1,6 +1,7 @@
 import React from 'react';
 import "./Subtitles.css";
 import axios from "axios";
+import {getServerUrl} from "../../utils";
 
 class Subtitles extends React.Component {
     constructor(props) {
@@ -24,11 +25,12 @@ class Subtitles extends React.Component {
             let self = this;
             setInterval(() => {
                 self.fetchSubtitles();
-            }, 1000);
+            }, 10000);
+            self.fetchSubtitles();
         }
     }
 
-    displaySubs(line) {
+    displaySubs(line, className) {
         let softLimit = 50
         let hardLimit = 160
         let maxFont = 20
@@ -39,7 +41,7 @@ class Subtitles extends React.Component {
         }
 
         if (line.length < softLimit) {
-            return <h1 className="subs">{line}</h1>
+            return [<h1 className={className}>{line}</h1>, false]
         } else {
             //let font_size = Math.min(20 - (line.length - softLimit) / ((maxFont - minFont)/(hardLimit - softLimit)), minFont);
             //return <h1 className="subs" style={{fontSize: font_size + "px"}}>{line}</h1>
@@ -59,14 +61,14 @@ class Subtitles extends React.Component {
             let line1 = line.substring(0, bestIndex);
             let line2 = line.substring(bestIndex + 1, line.length);
 
-            return <h1 className="subsMultiline">{line1}<br></br>{line2}</h1>
+            return [<h1 className={className}>{line1}<br></br>{line2}</h1>, true]
         }
     }
 
     fetchSubtitles() {
         if (!this.state.isLoaded) {
             let self = this;
-            let url = "http://127.0.0.1:8009/subtitles?id=" + this.props.videoId + "&language=" + this.props.language;
+            let url = getServerUrl()+"/subtitles?id=" + this.props.videoId + "&language=" + this.props.language;
             //let url = "http://128.199.46.26:8009/subtitles?id=" + this.props.videoId+"&language="+this.props.language;
             axios.get(url)
                 .then(function (response) {
@@ -81,10 +83,10 @@ class Subtitles extends React.Component {
                         if (self.type === "singular_og") {
                             self.originalSubtitles = response.data["subtitles"];
                         }
-                        if(self.type === "singular_translation"){
+                        if (self.type === "singular_translation") {
                             self.translationSubtitles = response.data["subtitles"];
                         }
-                        if(self.type === "dual"){
+                        if (self.type === "dual") {
                             self.originalSubtitles = response.data["original"];
                             self.translationSubtitles = response.data["translation"];
                         }
@@ -106,7 +108,7 @@ class Subtitles extends React.Component {
         }
     }
 
-    findSubtitleLine(subs){
+    findSubtitleLine(subs) {
         let line = "";
         for (let i = 0; i < subs.length; i++) {
             let sub = subs[i];
@@ -120,13 +122,10 @@ class Subtitles extends React.Component {
     render() {
         if (!this.state.isLoaded) {
             if (this.state.loadingTimeEstimate > 0) {
-                return <div className="loading_text">
-                    <p className="subs">Subtitles are loading, ≈{this.state.loadingTimeEstimate} seconds left</p>
-                </div>
+                return <p className="subs-regular">Subtitles are loading, ≈{this.state.loadingTimeEstimate} seconds left</p>
+
             } else {
-                return <div className="loading_text">
-                    <p className="subs">Subtitles are loading</p>
-                </div>
+                return <p className="subs-regular">Subtitles are loading</p>
             }
         } else {
             if (this.type === "singular_og" || this.type === "singular_translation") {
@@ -135,18 +134,36 @@ class Subtitles extends React.Component {
                     subs = this.translationSubtitles;
                 }
                 let line = this.findSubtitleLine(subs);
-                let displayed = this.displaySubs(line);
+                let [displayed, multiline] = this.displaySubs(line, "subs-regular");
                 return displayed;
             }
-            if(this.type === "dual"){
+            if (this.type === "dual") {
                 let lineOriginal = this.findSubtitleLine(this.originalSubtitles);
                 let lineTranslation = this.findSubtitleLine(this.translationSubtitles);
-                return (
-                    <div className="subsDiv">
-                        <h1  className="subsUpper">{lineOriginal}</h1>
-                        <h1 className="subsLower">{lineTranslation}</h1>
+
+                let [displayed1, multiline1] = this.displaySubs(lineTranslation, "subs-dual-1");
+                let [displayed2, multiline2] = this.displaySubs(lineOriginal, "subs-dual-2");
+
+                if(multiline1) {
+                    return <div className="subs-div" style={{gap: "65vh"}}>
+                        {displayed1}
+                        {displayed2}
                     </div>
-                )
+                }
+                else{
+                    if(lineTranslation !== "") {
+                        return <div className="subs-div" style={{gap: "69vh"}}>
+                            {displayed1}
+                            {displayed2}
+                        </div>
+                    }
+                    else{
+                        return <div className="subs-div" style={{gap: "73vh"}}>
+                            {displayed1}
+                            {displayed2}
+                        </div>
+                    }
+                }
             }
         }
     }

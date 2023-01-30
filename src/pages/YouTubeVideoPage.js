@@ -24,9 +24,15 @@ function YouTubeVideoPage() {
         fullScreenRef.current.fullScreen();
     }
 
+    const screenWidth = window.screen.width;
+    const screenHeight = window.screen.height;
+
+
+    console.log("width: "+screenWidth+"; height: "+screenHeight)
+
     return (
         <div className='app'>
-            <SubtitlesPlayer ref={player} videoId={searchParams.get("videoId")} language={searchParams.get("language")} />
+            <SubtitlesPlayer w={screenWidth} h = {screenHeight} ref={player} videoId={searchParams.get("videoId")} language={searchParams.get("language")} />
             <FullScreen ref={fullScreenRef} onFullScreenChange={onFullScreenChange}>
                 <div
                     onClick={requestOrExitFullScreen}

@@ -1,10 +1,11 @@
-import React, {createRef, useEffect} from 'react';
 import Subtitles from "../subtitles/Subtitles";
 import "./SubtitlesPlayer.css";
 import YouTube from "react-youtube";
 
+import React, {createRef} from "react";
 
 class SubtitlesPlayer extends React.Component {
+
     constructor(props) {
         super(props);
         let self = this;
@@ -28,8 +29,8 @@ class SubtitlesPlayer extends React.Component {
         let opts = undefined;
         if (this.state.isFullScreen) {
             opts = {
-                width: '1250',
-                height: '700',
+                width: Math.round(this.props.w*0.95)+"",
+                height:  Math.round(this.props.h*0.97)+"",
                 playerVars: {
                     // https://developers.google.com/youtube/player_parameters
                     autoplay: 1,
@@ -40,8 +41,8 @@ class SubtitlesPlayer extends React.Component {
             };
         } else {
             opts = {
-                width: '1200',
-                height: '580',
+                width: Math.round(this.props.w*0.95)+"",
+                height:  Math.round(this.props.h*0.82)+"",
                 playerVars: {
                     // https://developers.google.com/youtube/player_parameters
                     autoplay: 1,
@@ -52,7 +53,7 @@ class SubtitlesPlayer extends React.Component {
             };
         }
 
-        return <div className="playerContainer">
+        return <div className="player-container">
             <YouTube
                 videoId={this.props.videoId}
                 onReady={this.onReady.bind(this)}

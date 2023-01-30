@@ -7,6 +7,7 @@ import YouTubeVideoPage from "./pages/YouTubeVideoPage";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import SearchPage from "./pages/SearchPage";
+import SettingsPage from "./pages/SettingsPage";
 
 class App extends React.Component {
     constructor (props) {
@@ -23,6 +24,7 @@ class App extends React.Component {
                 <Route path="/youtube_video" element={<YouTubeVideoPage></YouTubeVideoPage>}/>
                 <Route path="/" element={<MainPage></MainPage>}/>
                 <Route path="/search" element={<SearchPage></SearchPage>}/>
+                <Route path="/settings" element={<SettingsPage></SettingsPage>}/>
             </Routes>
         </BrowserRouter>);
     }

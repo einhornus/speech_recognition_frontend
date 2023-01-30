@@ -1,4 +1,4 @@
-.playerContainer{
+.player-container{
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -7,4 +7,5 @@
     gap: 0px;
     height: 100vh;
     background-color: black;
+    position: relative;
 }

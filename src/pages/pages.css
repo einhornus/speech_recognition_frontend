@@ -1,8 +1,13 @@
+body {
+    background-color: #f2f2f2;
+}
+
 .search-form {
     padding: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
 }
 
 .main-form {
@@ -16,8 +21,7 @@
 input[type="text"] {
     padding: 10px;
     margin-top: 10px;
-    width: 50%;
-    top: 20px;
+    width: 40%;
     font-size: 18px;
     margin-bottom: 10px;
     margin-right: 10px;
@@ -40,12 +44,26 @@ label{
 }
 
 .my-select{
+}
+
+.my-select-container{
     display: flex;
-    margin-right: 10px;
-    margin-left: 10px;
     flex-direction: column;
-    width: 15%;
+    width: 20%;
     align-items: center;
+    top:-11px;
+    position: relative;
+}
+
+.search-box{
+    width: 50%;
+}
+
+label[for="my-select"] {
+    color: black;
+    font-size: 16px;
+    top:0px;
+    position: relative;
 }
 
 button {
@@ -60,7 +78,6 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
-
 button:hover {
     background-color: #3e8e41;
 }

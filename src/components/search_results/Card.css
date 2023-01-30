@@ -1,7 +1,37 @@
-.search-result{
-
+.card-image{
+    max-width: 60%;
+    max-height: 60%;
+    width: auto;
+    height: auto;
 }
 
-.search-result-info{
+.card-image-hover{
+    cursor: pointer;
+    max-width: 60%;
+    max-height: 60%;
+    width: auto;
+    height: auto;
+}
 
+.card-title{
+    font-size: 16px;
+    align-content: center;
+}
+
+.card-title-hover{
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    align-content: center;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 10px;
+    place-items: center;
+}
+
+.card-container:hover {
+    background-color: #f5fff5;
 }

@@ -1,0 +1,11 @@
+.search-result{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    grid-gap: 20px;
+    place-items: center;
+}
+
+
+.search-result-info{
+}
